@@ -2,16 +2,17 @@ import React, {useState} from "react";
 import InterviewerListItem from "./InterviewerListItem";
 import './InterviewerListItem.scss';
 export default function InterviewerList(props) {
-  const [interviewer, setInterviewer] = useState(props.interviewer);
-  const interviewers = props.interviewers.map((person) => {
+  //const [interviewer, setInterviewer] = useState(props.value);
+  const interviewers = props.interviewers.map((value) => {
     return (
       <InterviewerListItem 
-      key={person.id}
-      name={person.name}
-      avatar={person.avatar}
-      selected={person.id === interviewer}
+      key={value.id}
+      name={value.name}
+      avatar={value.avatar}
+      
+      selected={(value.id === props.interviewer)}
         //props.setInterviewer(props.id)
-      setInterviewer={() => console.log("id set to",person.id)}
+      setInterviewer={() => props.setInterviewer(value.id)}
       />  
     );
   });
