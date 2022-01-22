@@ -3,7 +3,7 @@ import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import axios from "axios"
 import "components/Application.scss";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 
 export default function Application(props) {
@@ -11,7 +11,8 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday", 
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   let dailyAppointments = [];
@@ -34,28 +35,28 @@ export default function Application(props) {
       axios.get(interviewersUrl)
     ]).then((all) => {
       console.log("state days", all[0].data);
-      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2]}));
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
       const [days, appointments, interviewers] = all;
-      console.log("all ",days.data, appointments.data, interviewers)
+      console.log("all ",days.data, appointments.data, interviewers.data)
      
     });
   
     
   }, []);
  
-  console.log("day", state.day)
-  console.log("state a",state.appointments)
-  dailyAppointments = getAppointmentsForDay(state, state.day);
-  console.log("daily",dailyAppointments)
+  const appointments = getAppointmentsForDay(state, state.day);  
   
-  
-  const listAppointments = dailyAppointments.map((value) => {
-    return (<Appointment 
-    key={value.id}
-    {...value}
-    />
-    );
-  })
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+      return (
+      <Appointment 
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+      );
+  });
 
   return (
     <main className="layout">
@@ -80,7 +81,8 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {listAppointments}
+        {/* {listAppointments} */}
+        {schedule}
       </section>
       
     </main>

@@ -13,3 +13,15 @@
   
   return appointmentsArray;
 }
+
+export function getInterview(state, interview) {
+  let results = null;
+  if(interview !== null && state !== null) {
+    results = {};
+    results.student = interview.student
+    results.interviewer = state.interviewers[interview.interviewer];
+    
+    
+  }
+  return results;
+}
