@@ -3,7 +3,7 @@ import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import axios from "axios"
 import "components/Application.scss";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Application(props) {
@@ -34,18 +34,15 @@ export default function Application(props) {
       axios.get(appointmentUrl),
       axios.get(interviewersUrl)
     ]).then((all) => {
-      console.log("state days", all[0].data);
+      
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
       const [days, appointments, interviewers] = all;
-      console.log("all ",days.data, appointments.data, interviewers.data)
-     
     });
   
     
   }, []);
- 
-  const appointments = getAppointmentsForDay(state, state.day);  
-  
+  const appointments = getAppointmentsForDay(state, state.day); 
+  const InterviewersForDay = getInterviewersForDay(state, state.day);
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
       return (
@@ -54,6 +51,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={InterviewersForDay}
       />
       );
   });
