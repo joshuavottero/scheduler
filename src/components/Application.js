@@ -65,11 +65,11 @@ export default function Application(props) {
       }
       setState(newState);
     })
-    .catch(function (err) {
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
-    });
+    // .catch(function (err) {
+    //   console.log(err.response.data);
+    //   console.log(err.response.status);
+    //   console.log(err.response.headers);
+    // });
   }
 
   function cancelInterview(id){
@@ -95,11 +95,11 @@ export default function Application(props) {
       }
       setState(newState);
     })
-    .catch(function (err) {
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
-    });
+    // .catch(function (err) {
+    //   console.log(err.response.data);
+    //   console.log(err.response.status);
+    //   console.log(err.response.headers);
+    // });
     
     
 

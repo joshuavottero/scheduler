@@ -4,29 +4,28 @@ export function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
     const transition = function transition(newMode, replace = false) {
-      let tempArray = history
+      let tempArray = [...history];
+      setMode(newMode);
       if (replace) {
+
         tempArray[tempArray.length - 1] = newMode;
+        setHistory(tempArray);
       }
       else{
-        tempArray.push(newMode);  
+        tempArray.push(newMode);
+        setHistory(tempArray);  
       }
-      setHistory(tempArray);
-      setMode(newMode);
     } 
 
     const back = function back(mode) {
       if(history[history.length - 1] !== initial) {
-        let tempArray = history;
+        let tempArray = [...history];
         const backValue = tempArray.pop();
-        setHistory(tempArray); 
+        setHistory(prev => (tempArray)); 
         setMode(tempArray[tempArray.length - 1]);
       }     
      
     } 
-    // console.log("action",mode);
-    // console.log("action",transition);
-
   return { mode, transition, back };
 }
 
