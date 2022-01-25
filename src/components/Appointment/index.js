@@ -4,18 +4,53 @@ import Header from "./Header"
 import Show from "./Show"
 import Empty from "./Empty"
 import Form from "./Form"
+import Status from "./Status";
+import axios from "axios";
 import {useVisualMode} from "hooks/useVisualMode"; 
+import Confirm from "./Confirm";
 
 export default function Appointment(props) {
-  // console.log(props.interview.student);
-  // console.log(props.interview);
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
+  const CONFIRM = "CONFIRM";
+  const EDIT = "EDIT";
+
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING)
+    props.bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+    .catch(function (err) {
+      back();
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    });
+    
+  }
+
+  function deleteAppointment(id) {
+    transition(DELETING);
+    props.cancelInterview(id)
+    .then(() => transition(EMPTY))
+    .catch(function (err) {
+      back();
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    });
+  } 
+
   return(
     <article className="appointment">
       <Header time={props.time} />
@@ -25,14 +60,19 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
+          id={props.id}
           //onAdd={transition(CREATE)}
         />
       )}
-      {mode === CREATE && <Form  onCancel={() => back()} interviewers={props.interviewers} />}
-
-      {/* {props.interview ?  <Show student={props.interview.student} interviewer={props.interview.interviewer} /> : <Empty mode="EMPTY" />} */}
-      {/* {(props.time && <span>Appointment at {props.time}</span>)}
-      {(!props.time && <span>No Appointments</span>)} */}
+      {mode === CREATE && <Form id={props.id} onSave={save}  
+      onCancel={() => back()} interviewers={props.interviewers}/>} 
+      {mode === SAVING && <Status message={"SAVING"} />}
+      {mode === DELETING && <Status message={"DELETING"} />}
+      {mode === CONFIRM && <Confirm onCancel={() => back()} id={props.id} onConfirm={deleteAppointment} />}
+      {mode === EDIT && <Form student={props.interview.student} interviewer={props.interview.interviewer.id} id={props.id} onSave={save} onCancel={() => back()} interviewers={props.interviewers}/>}
     </article>
   );
+  
 }

@@ -38,9 +38,75 @@ export default function Application(props) {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
       const [days, appointments, interviewers] = all;
     });
-  
-    
   }, []);
+
+  function bookInterview(id, interview) {
+    return axios.put(`/api/appointments/${id}`, {interview})
+    .then(res => {
+      const Newinterview = {
+        ...interview
+      } 
+      
+  
+      const newAppointment = { 
+        ...state.appointments[id],
+        interview: { ...Newinterview }
+      };
+  
+      const newAppointments = {
+        ...state.appointments,
+        [id]: newAppointment
+      };
+     
+  
+      const newState = {
+        ...state,
+        appointments: newAppointments
+      }
+      setState(newState);
+    })
+    .catch(function (err) {
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    });
+  }
+
+  function cancelInterview(id){
+
+    return axios.delete(`/api/appointments/${id}`)
+    .then(res => { 
+      console.log("how");
+      const Newinterview = null
+    
+      const newAppointment = { 
+        ...state.appointments[id],
+        interview: { ...Newinterview }
+      };
+
+      const newAppointments = {
+        ...state.appointments,
+        [id]: newAppointment
+      };
+
+      const newState = {
+        ...state,
+        appointments: newAppointments
+      }
+      setState(newState);
+    })
+    .catch(function (err) {
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    });
+    
+    
+
+  }
+
+  
+
   const appointments = getAppointmentsForDay(state, state.day); 
   const InterviewersForDay = getInterviewersForDay(state, state.day);
   const schedule = appointments.map((appointment) => {
@@ -52,6 +118,8 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={InterviewersForDay}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
       );
   });
