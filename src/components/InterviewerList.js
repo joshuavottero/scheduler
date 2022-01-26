@@ -1,7 +1,15 @@
+import { checkPropTypes } from "prop-types";
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 import InterviewerListItem from "./InterviewerListItem";
 import './InterviewerListItem.scss';
+
+
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};
 export default function InterviewerList(props) {
+
   //const [interviewer, setInterviewer] = useState(props.value);
   const interviewers = props.interviewers.map((value) => {
     return (
@@ -9,6 +17,7 @@ export default function InterviewerList(props) {
       key={value.id}
       name={value.name}
       avatar={value.avatar}
+
       
       selected={(value.id === props.interviewer)}
         //props.setInterviewer(props.id)
@@ -27,4 +36,6 @@ export default function InterviewerList(props) {
     </section>
     
   );
+
+  
 }
