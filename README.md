@@ -32,8 +32,13 @@ Project done by Joshua Vottero.
 In the this project the user can book appointment any weekday.
 the user can also edit delete existing appointments.
 
+## on start up
 !["on start up"](https://github.com/joshuavottero/scheduler/blob/master/docs/start.png)
+## creating new appointment
 !["creating new appointment"](https://github.com/joshuavottero/scheduler/blob/master/docs/create.png)
+## new appointment made
 !["new appointment made"](https://github.com/joshuavottero/scheduler/blob/master/docs/created.png)
+## cancel appointment?
 !["cancel appointment?"](https://github.com/joshuavottero/scheduler/blob/master/docs/remove.png)
+## appointment has been removed
 !["appointment has been removed"](https://github.com/joshuavottero/scheduler/blob/master/docs/removed.png)
