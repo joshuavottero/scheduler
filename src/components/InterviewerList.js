@@ -10,7 +10,6 @@ InterviewerList.propTypes = {
 };
 export default function InterviewerList(props) {
 
-  //const [interviewer, setInterviewer] = useState(props.value);
   const interviewers = props.interviewers.map((value) => {
     return (
       <InterviewerListItem 
@@ -20,7 +19,6 @@ export default function InterviewerList(props) {
 
       
       selected={(value.id === props.interviewer)}
-        //props.setInterviewer(props.id)
       setInterviewer={() => props.setInterviewer(value.id)}
       />  
     );

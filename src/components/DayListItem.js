@@ -17,7 +17,6 @@ export default function DayListItem(props) {
     "day-list__item--full": (props.spots === 0)
  });
 
- //const formatSpots = function formatSpots(spots) {
   return (
     <li 
     data-testid="day" 

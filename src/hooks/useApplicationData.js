@@ -37,19 +37,12 @@ export function useApplicationData(initial) {
       }
       setState(newState);
     })
-    // .catch(function (err) {
-    //   console.log(err.response.data);
-    //   console.log(err.response.status);
-    //   console.log(err.response.headers);
-    // });
   }
 
   const cancelInterview = function cancelInterview(id){
 
     return axios.delete(`/api/appointments/${id}`)
-    .then(res => { 
-      //const Newinterview = null
-    
+    .then(res => {     
       const newAppointment = { 
         ...state.appointments[id],
         interview:  null 
@@ -81,10 +74,6 @@ export function useApplicationData(initial) {
   }
 
   useEffect(() => {
-    //const Url = "http://localhost:8001/api/days"
-    // axios.get(Url).then(response => {
-    //   //setDays(response.data)
-    // });
 
     const dayUrl = "http://localhost:8001/api/days"
     const appointmentUrl = "http://localhost:8001/api/appointments"

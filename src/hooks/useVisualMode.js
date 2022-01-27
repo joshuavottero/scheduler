@@ -20,7 +20,7 @@ export function useVisualMode(initial) {
     const back = function back(mode) {
       if(history[history.length - 1] !== initial) {
         let tempArray = [...history];
-        const backValue = tempArray.pop();
+        tempArray.pop();
         setHistory(prev => (tempArray)); 
         setMode(tempArray[tempArray.length - 1]);
       }     

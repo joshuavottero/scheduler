@@ -64,7 +64,6 @@ export default function Appointment(props) {
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
           id={props.id}
-          //onAdd={transition(CREATE)}
         />
       )}
       {mode === CREATE && <Form id={props.id} onSave={save}  
