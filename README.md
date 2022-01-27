@@ -34,6 +34,6 @@ the user can also edit delete existing appointments.
 
 !["on start up"](https://github.com/joshuavottero/scheduler/blob/master/docs/start.png)
 !["creating new appointment"](https://github.com/joshuavottero/scheduler/blob/master/docs/create.png)
-!["new appointment made"](created.png)
-!["cancel appointment?"](https://github.com/joshuavottero/scheduler/tree/master/docs#:~:text=1%20minute%20ago-,remove.png,-started%20readme)
+!["new appointment made"](https://github.com/joshuavottero/scheduler/blob/master/docs/created.png)
+!["cancel appointment?"](https://github.com/joshuavottero/scheduler/tree/master/docs#:~:text=6%20minutes%20ago-,remove.png,-started%20readme)
 !["appointment has been removed"](https://github.com/joshuavottero/scheduler/blob/master/docs/removed.png)
