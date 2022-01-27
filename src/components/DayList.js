@@ -1,3 +1,4 @@
+import { checkPropTypes } from "prop-types";
 import React from "react";
 import DayListItem from "./DayListItem";
 

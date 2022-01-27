@@ -20,6 +20,7 @@ export default function DayListItem(props) {
  //const formatSpots = function formatSpots(spots) {
   return (
     <li 
+    data-testid="day" 
     onClick={() => props.setDay(props.name)} 
     className={dayClass}
     selected={props.selected}
