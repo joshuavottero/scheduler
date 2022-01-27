@@ -46,9 +46,9 @@ describe("should book an interview",() => {
     .click({ force: true });
 
     cy.contains("Confirm").click();
-
-    cy.contains("DELETING").should("exist");
-    cy.contains("DELETING").should("not.exist");
+    
+    cy.contains("Deleting").should("exist");
+    cy.contains("Deleting").should("not.exist");
 
     cy.contains(".appointment__card--show", "Archile Cohen")
     .should("not.exist");
