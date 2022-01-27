@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios"
 
 export function useApplicationData(initial) {
@@ -63,14 +63,6 @@ export function useApplicationData(initial) {
       
       setState(newState);
     })
-    // .catch(function (err) {
-    //   console.log(err.response.data);
-    //   console.log(err.response.status);
-    //   console.log(err.response.headers);
-    // });
-    
-    
-  
   }
 
   useEffect(() => {
@@ -85,7 +77,6 @@ export function useApplicationData(initial) {
     ]).then((all) => {
 
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
-      const [days, appointments, interviewers] = all;
     });
   }, []);
 

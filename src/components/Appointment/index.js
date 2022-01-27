@@ -5,7 +5,6 @@ import Show from "./Show"
 import Empty from "./Empty"
 import Form from "./Form"
 import Status from "./Status";
-import axios from "axios";
 import {useVisualMode} from "hooks/useVisualMode"; 
 import Confirm from "./Confirm";
 import Error from "./Error";
@@ -70,7 +69,7 @@ export default function Appointment(props) {
       onCancel={() => back()} interviewers={props.interviewers}/>} 
       {mode === SAVING && <Status message={"Saving"} />}
       {mode === DELETING && <Status message={"Deleting"} />}
-      {mode === CONFIRM && <Confirm onCancel={() => back()} id={props.id} onConfirm={deleteAppointment} />}
+      {mode === CONFIRM && <Confirm message="Are you sure you want to delete?" onCancel={() => back()} id={props.id} onConfirm={deleteAppointment} />}
       {mode === EDIT && <Form student={props.interview.student} interviewer={props.interview.interviewer.id} id={props.id} onSave={save} onCancel={() => back()} interviewers={props.interviewers}/>}
       {mode === ERROR_SAVE && <Error onClose={() => back()} id={props.id}/>}
       {mode === ERROR_DELETE && <Error onClose={() => back()} id={props.id}/>}

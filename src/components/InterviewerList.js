@@ -1,5 +1,4 @@
-import { checkPropTypes } from "prop-types";
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import InterviewerListItem from "./InterviewerListItem";
 import './InterviewerListItem.scss';
