@@ -33,10 +33,7 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
     .catch(function (err) {
-      transition(ERROR_SAVE, true)
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
+      transition(ERROR_SAVE)
     });
     
   }
@@ -47,9 +44,6 @@ export default function Appointment(props) {
     .then(() => transition(EMPTY))
     .catch(function (err) {
       transition(ERROR_DELETE, true)
-      console.log(err.response.data);
-      console.log(err.response.status);
-      console.log(err.response.headers);
     });
   } 
   return(

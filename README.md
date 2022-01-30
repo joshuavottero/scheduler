@@ -22,6 +22,19 @@ npm test
 npm run storybook
 ```
 
+## dependencies 
+
+"@testing-library/react-hooks": "^7.0.2",
+"axios": "^0.25.0",
+"classnames": "^2.2.6",
+"normalize.css": "^8.0.1",
+"react": "^16.9.0",
+"react-dom": "^16.9.0",
+"react-hooks-testing-library": "^0.6.0",
+"react-scripts": "3.0.0"
+
+
+
 ## project details
 This is work done in the Light House web dev boot camp. 
 

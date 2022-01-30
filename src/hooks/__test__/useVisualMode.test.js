@@ -43,7 +43,6 @@ test("test 4 useVisualMode should not return to previous mode if already at init
 
 test("test 5 useVisualMode should replace the current mode", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));
-
   act(() => result.current.transition(SECOND));
   expect(result.current.mode).toBe(SECOND);
 
